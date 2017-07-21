@@ -1,10 +1,13 @@
 import unittest
 
 from pymodbus.client.sync import ModbusTcpClient
+from pymodbus.transaction import ModbusRtuFramer
 
 from epsolartracer.EPSolarTracerClient import EPSolarTracerClient
 
+from epsolartracer.registers import RatedDatum
 
+# noinspection PyMethodMayBeStatic
 class EPSolarTracerClientTestCase(unittest.TestCase):
     def test_init_wrong_type(self):
         try:
@@ -14,5 +17,8 @@ class EPSolarTracerClientTestCase(unittest.TestCase):
             pass
 
     def test_construct(self):
+        EPSolarTracerClient(ModbusTcpClient("192.168.100.111", framer=ModbusRtuFramer))
 
-        client = EPSolarTracerClient(ModbusTcpClient("192.168.100.111"))
+    def test_read_input_register(self):
+        client = EPSolarTracerClient(ModbusTcpClient("192.168.100.111", framer=ModbusRtuFramer))
+        client.read_input_register(RatedDatum.ArrayRatedVoltage)

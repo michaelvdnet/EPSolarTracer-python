@@ -8,5 +8,6 @@ setup(
     license='GPL-3.0',
     author='Michael van der Net',
     author_email='michaelvandernet@hotmail.com',
-    description='Library for communicating with the EPSolar Tracer'
+    description='Library for communicating with the EPSolar Tracer',
+    requires=['pymodbus']
 )

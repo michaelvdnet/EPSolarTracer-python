@@ -1,18 +1,4 @@
-class InputRegister(object):
-    pass
-
-
-class HoldingRegister(object):
-    pass
-
-
-class _Coil(object):
-    pass
-
-
-class DiscreteInput(object):
-    pass
-
+# region Types
 
 class Register(object):
     """
@@ -48,35 +34,50 @@ class Coil(object):
         self.description = description
 
 
-# region registers
-class RatedDatum(InputRegister):
-    ArrayRatedVoltage = Register(0x3000, "PV array rated voltage", "V", 100)
-
-
-class RealtimeDatum(InputRegister):
+class InputRegister(Register):
     pass
 
 
-class RealtimeStatus(InputRegister):
+class HoldingRegister(Register):
     pass
 
 
-class StatisticalParameters(InputRegister):
-    pass
-
-
-class SettingParameters(HoldingRegister):
+class DiscreteInput(Coil):
     pass
 
 
 # endregion
-# region coils
-class SwitchValues(_Coil):
+
+# region Registers
+class RatedDatum(object):
+    ArrayRatedVoltage = InputRegister(0x3000, "PV array rated voltage", "V", 100)
+
+
+class RealtimeDatum(object):
+    pass
+
+
+class RealtimeStatus(object):
+    pass
+
+
+class StatisticalParameters(object):
+    pass
+
+
+class SettingParameters(object):
+    pass
+
+
+# endregion
+
+# region Coils
+class SwitchValues(object):
     ChargingDeviceOnOff = Coil(0, "1 Charging device on\n"
                                   "0 Charging device off")
 
 
-class DescreteValues(DiscreteInput):
+class DescreteValues(object):
     pass
 
 # endregion
