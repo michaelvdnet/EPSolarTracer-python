@@ -13,3 +13,4 @@ class EPSolarTracerClient(object):
         # Change framer to the RTU Framer (The tracer responds back in RTU even when requesting in TCP)
         modbusclient.framer = ModbusRtuFramer
 
+        self.modbusclient = modbusclient
