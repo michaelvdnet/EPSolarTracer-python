@@ -51,11 +51,13 @@ class DiscreteInput(Coil):
 # region Registers
 class RatedDatum(object):
     ArrayRatedVoltage = InputRegister(0x3000, "PV array rated voltage", "V", 100)
+    ArrayRatedCurrent = InputRegister(0x3001, "PV array rated current", "A", 100)
+
 
 
 class RealtimeDatum(object):
-    pass
-
+    BatterySOC = InputRegister(0x311A, "The percentage of battery's remaining capacity", "%", 1)
+    BatteryVoltage = InputRegister(0x3104, "", "V", 100)
 
 class RealtimeStatus(object):
     pass

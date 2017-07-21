@@ -1,9 +1,9 @@
 import unittest
 
-from pymodbus.client.sync import ModbusTcpClient
+from pymodbus.client.sync import ModbusTcpClient, ModbusSerialClient
 from pymodbus.transaction import ModbusRtuFramer
 
-from epsolartracer.EPSolarTracerClient import EPSolarTracerClient
+from epsolartracer.epsolartracerclient import EPSolarTracerClient
 
 from epsolartracer.registers import RatedDatum
 
@@ -20,5 +20,8 @@ class EPSolarTracerClientTestCase(unittest.TestCase):
         EPSolarTracerClient(ModbusTcpClient("192.168.100.111", framer=ModbusRtuFramer))
 
     def test_read_input_register(self):
-        client = EPSolarTracerClient(ModbusTcpClient("192.168.100.111", framer=ModbusRtuFramer))
-        client.read_input_register(RatedDatum.ArrayRatedVoltage)
+        modbusclient = ModbusTcpClient("192.168.100.111", framer=ModbusRtuFramer)
+
+        client = EPSolarTracerClient(modbusclient)
+
+        print client.read_input_register(RatedDatum.ArrayRatedVoltage)

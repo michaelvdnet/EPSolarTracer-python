@@ -44,8 +44,9 @@ class EPSolarTracerClient(object):
         raw_value = self.modbusclient.read_input_registers(input_register.address, unit=self.unit)
 
         if isinstance(raw_value, ReadInputRegistersResponse):
-            value = "" + str(raw_value.registers[0] / input_register.times) + input_register.unit
+            value = "" + str(float(raw_value.registers[0]) / input_register.times) + input_register.unit
             response = Response(True, DataResponse(value, raw_value))
         else:
-            response = Response(False, "")
+            response = Response(False, raw_value.string)
         return response
+
