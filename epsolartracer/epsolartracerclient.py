@@ -1,5 +1,6 @@
 from pymodbus.client.sync import BaseModbusClient
 from pymodbus.register_read_message import *
+from pymodbus.register_write_message import WriteSingleRegisterResponse
 from pymodbus.transaction import ModbusRtuFramer
 
 from epsolartracer.registers import InputRegister, HoldingRegister
@@ -56,7 +57,7 @@ class EPSolarTracerClient(object):
         if not isinstance(holding_register, HoldingRegister):
             raise TypeError("1st argument must be a holding register")
 
-        raw_value = self.modbusclient.read_holding_registers(holding_register.address, unit=self.unit)
+        raw_value = self.modbusclient.read_holding_registers(holding_register.address, unit=self.unit) # type: ReadHoldingRegistersResponse |
 
         if isinstance(raw_value, ReadHoldingRegistersResponse):
             value = "" + str(float(raw_value.registers[0]) / holding_register.times) + holding_register.unit
@@ -65,4 +66,12 @@ class EPSolarTracerClient(object):
         else:
             response = Response(False, raw_value.string)
         return response
+
+    def write_holding_register(self, holding_register, value):
+        # type: (HoldingRegister) -> None
+
+        if not isinstance(holding_register, HoldingRegister):
+            raise TypeError("1st argument must be a holding register")
+
+        raw_value = self.modbusclient.write_register(holding_register, value, unit=self.unit) # type: WriteSingleRegisterResponse
 
