@@ -52,12 +52,20 @@ class DiscreteInput(Coil):
 class RatedDatum(object):
     ArrayRatedVoltage = InputRegister(0x3000, "PV array rated voltage", "V", 100)
     ArrayRatedCurrent = InputRegister(0x3001, "PV array rated current", "A", 100)
-
+    ArrayRatedPowerL = InputRegister(0x3002, "PV array rated power L", "W", 100)
+    ArrayRattedPowerH = InputRegister(0x3003, "PV array rated power H", "W", 100)
+    BatteryRatedVoltage = InputRegister(0x3004, "Rated voltage to battery", "V", 100)
+    BatteyRatedCurrent = InputRegister(0x3005, "Rated current to battery", "A", 100)
+    BatteryRatedPowerL = InputRegister(0x3006, "Rated power to battery", "W", 100)
+    BatteryRatedPowerH = InputRegister(0x3007, "Rated power to battery", "W", 100)
+    ChargingMode = InputRegister(0x3008, "0000H Connect/disconnect, 0001H PWM, 0002H MPPT", "", 1)
+    RatedCurrentOfLoad = InputRegister(0x300E, "Rated current of load", "A", 100)
 
 
 class RealtimeDatum(object):
     BatterySOC = InputRegister(0x311A, "The percentage of battery's remaining capacity", "%", 1)
     BatteryVoltage = InputRegister(0x3104, "", "V", 100)
+
 
 class RealtimeStatus(object):
     pass
