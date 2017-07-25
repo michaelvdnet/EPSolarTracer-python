@@ -1,8 +1,8 @@
 from pymodbus.client.sync import BaseModbusClient
-from pymodbus.register_read_message import ReadInputRegistersResponse
+from pymodbus.register_read_message import *
 from pymodbus.transaction import ModbusRtuFramer
 
-from epsolartracer.registers import InputRegister
+from epsolartracer.registers import InputRegister, HoldingRegister
 
 
 class Response(object):
@@ -50,3 +50,18 @@ class EPSolarTracerClient(object):
             response = Response(False, raw_value.string)
         return response
 
+    def read_holding_register(self, holding_register):
+        # type: (HoldingRegister) -> Response
+
+        if not isinstance(holding_register, HoldingRegister):
+            raise TypeError("1st argument must be a holding register")
+
+        raw_value = self.modbusclient.read_holding_registers(holding_register.address, unit=self.unit)
+
+        if isinstance(raw_value, ReadHoldingRegistersResponse):
+            value = "" + str(float(raw_value.registers[0]) / holding_register.times) + holding_register.unit
+            response = Response(True, DataResponse(value, raw_value))
+
+        else:
+            response = Response(False, raw_value.string)
+        return response
