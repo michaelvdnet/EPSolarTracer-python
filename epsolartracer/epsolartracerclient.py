@@ -39,7 +39,7 @@ class EPSolarTracerClient(object):
         # type: (InputRegister) -> Response
 
         if not isinstance(input_register, InputRegister):
-            raise TypeError("1st argument should be an input register")
+            raise TypeError("1st argument must be an input register")
 
         raw_value = self.modbusclient.read_input_registers(input_register.address, unit=self.unit)
 
