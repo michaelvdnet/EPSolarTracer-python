@@ -23,10 +23,10 @@ class EPSolarTracerClient(object):
 
         # Type validation
         if not isinstance(modbusclient, BaseModbusClient):
-            raise TypeError("1st argument should be a valid ModbusClient")
+            raise TypeError("1st argument must be a valid ModbusClient")
 
         if not isinstance(unit, int):
-            raise TypeError("2nd argument should be a integer")
+            raise TypeError("2nd argument must be a integer")
 
         # Check if framer is RTU framer
         if not isinstance(modbusclient.framer, ModbusRtuFramer):
@@ -65,3 +65,4 @@ class EPSolarTracerClient(object):
         else:
             response = Response(False, raw_value.string)
         return response
+
