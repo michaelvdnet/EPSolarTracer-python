@@ -63,8 +63,23 @@ class RatedDatum(object):
 
 
 class RealtimeDatum(object):
+    PvArrayInputVoltage = InputRegister(0x3100, "Solar charge controller--PV array voltage", "V", 100)
+    PvArrayInputCurrent = InputRegister(0x3101, "Solar charge controller--PV array Current", "A", 100)
+    PvArrayInputPowerL = InputRegister(0x3102, "Solar charge controller--PV array Power", "W", 100)
+    PvArrayInputPowerH = InputRegister(0x3103, "Solar charge controller--PV array Powe", "W", 100)
+    BatteryVoltage = InputRegister(0x3104, "Battery Voltage", "V", 100)
+    BatteryPowerL = InputRegister(0x3106, "Battery charging Power", "W", 100)
+    BatteryPowerH = InputRegister(0x3107, "Battery charging Power", "W", 100)
+    LoadVoltage = InputRegister(0x310C, "Load Voltage", "V", 100)
+    LoadCurrent = InputRegister(0x310D, "Load Current", "A", 100)
+    LoadPowerL = InputRegister(0x310E, "Load power", "W", 100)
+    LoadPowerH = InputRegister(0x310F, "Load power", "W", 100)
+    BatteryTemperature = InputRegister(0x3110, "Battery Temperature", "C", 100)
+    TemperatureInsiteEquipment = InputRegister(0x3111, "Temperature insite case", "C", 100)
     BatterySOC = InputRegister(0x311A, "The percentage of battery's remaining capacity", "%", 1)
-    BatteryVoltage = InputRegister(0x3104, "", "V", 100)
+    RemoteBatteryTemperature = InputRegister(0x311B, "The batery tempereture measured by remote temperature sensor", "C", 100)
+    BatteryRealRatedPower = InputRegister(0x311D, "Current system rated voltage 1200=12V", "VA", 100)
+
 
 
 class RealtimeStatus(object):
