@@ -5,7 +5,7 @@ from epsolartracer.epsolartracerclient import EPSolarTracerClient
 # create a modbus client
 from epsolartracer.registers import RealtimeDatum
 
-modbusclient = ModbusTcpClient("192.168.100.111", framer=ModbusRtuFramer)
+modbusclient = ModbusTcpClient("192.168.2.111", port=8088, framer=ModbusRtuFramer)
 # or modbusclient = ModbusSerialClient() when using serial
 
 # create an EPSolarTracerClient
